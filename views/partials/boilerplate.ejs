@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daily Drip</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .navbar {
+            display: flex;
+            align-items: center;
+            background-color: #333;
+            padding: 10px 20px;
+            color: white;
+        }
+
+        /* Icon + text container */
+        .logo {
+            display: none;
+            flex-direction: column; /* vertical stack */
+            align-items: center;
+            margin-right: 30px;
+        }
+
+        .coffee-icon {
+            font-variation-settings:
+                'FILL' 1,
+                'wght' 400,
+                'GRAD' 0,
+                'opsz' 48;
+            font-size: 36px;
+            color: #f5deb3;
+        }
+
+        .logo p {
+            margin: 0;
+            font-size: 14px;
+            color: white;
+            font-weight: bold;
+        }
+
+        /* Navbar links */
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            margin-right: 35px;
+            font-size: 16px;
+        }
+
+        .navbar a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+  <%- include("header.ejs") %>
+  <%- include("flash.ejs") %>
+
+  
+</body>
+</html>
