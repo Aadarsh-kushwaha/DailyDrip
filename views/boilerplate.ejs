@@ -1,10 +1,11 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Daily Drip</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DailyDrip</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
     <style>
         body {
             margin: 0;
@@ -56,11 +57,17 @@
             text-decoration: underline;
         }
     </style>
-</head>
-<body>
-  <%- include("header.ejs") %>
-  <%- include("flash.ejs") %>
 
-  
+</head>
+
+<body>
+  <!-- Header -->
+  <%- include("partials/header") %>
+
+  <!-- Main Coffee Page -->
+  <%- include("coffees/index") %>
+
+  <!-- Footer -->
+  <%- include("partials/footer") %>
 </body>
 </html>

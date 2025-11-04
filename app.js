@@ -69,10 +69,10 @@ app.use((req, res, next) => {
 });
 
 // ====== Routes ======
-
 app.get("/home", (req, res) => {
-  res.render("partials/boilerPlate");
+  res.render("boilerplate"); // correct path
 });
+
 
 app.get("/menu", (req, res) => {
   res.render("menu"); // views/menu.ejs
