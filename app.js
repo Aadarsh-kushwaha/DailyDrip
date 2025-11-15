@@ -6,6 +6,8 @@ const session = require("express-session");
 const MongoStore = require("connect-mongo");
 const flash = require("express-flash");
 const path = require("path");
+const ejsMate = require("ejs-mate");
+
 
 const app = express();
 
@@ -26,6 +28,10 @@ main()
   
 
 // ====== View Engine Setup ======
+
+
+
+app.engine("ejs", ejsMate);
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 
@@ -70,7 +76,10 @@ app.use((req, res, next) => {
 
 // ====== Routes ======
 app.get("/home", (req, res) => {
-  res.render("boilerplate"); // correct path
+    res.render("coffees/index");
+});
+app.get("/about", (req, res) => {
+    res.render("coffees/about");
 });
 
 
