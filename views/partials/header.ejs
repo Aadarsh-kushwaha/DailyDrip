@@ -8,18 +8,16 @@
 
 
     <!-- Links container with flex -->
-    <div class="links-container d-flex flex-grow-1">
+    <div class="links-container d-flex flex-grow-1 text-decoration-none">
         <!-- Left aligned links -->
-        <div class="left-links d-flex">
+        <div class="left-links d-flex text-decoration-none">
             <a href="#">Home</a>
             <a href="#">About</a>
             <a href="#">Shop</a>
              <a href="#">Pages</a>
             <a href="#">Blog</a>
             <a href="#">Contact Us</a>
-            <span class="material-symbols-outlined">
-local_mall
-</span>
+            <a class="material-symbols-outlined">local_mall</a>
         </div>
         
 
@@ -56,7 +54,10 @@ local_mall
     font-size: 36px;
     color: #f5deb3;
 }
-
+.left-links a,
+.right-links a {
+    text-decoration: none !important;
+}
 .links-container a {
     color: white;
     text-decoration: none;
