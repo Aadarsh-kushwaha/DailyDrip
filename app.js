@@ -7,6 +7,8 @@ const MongoStore = require("connect-mongo");
 const flash = require("express-flash");
 const path = require("path");
 const ejsMate = require("ejs-mate");
+const Coffee = require("./models/coffee");
+
 
 
 const app = express();
@@ -78,13 +80,21 @@ app.use((req, res, next) => {
 app.get("/home", (req, res) => {
     res.render("coffees/index");
 });
+
 app.get("/about", (req, res) => {
     res.render("coffees/about");
 });
 
 
-app.get("/menu", (req, res) => {
-  res.render("menu"); // views/menu.ejs
+app.get("/menu", async (req, res) => {
+    let coffees = await Coffee.find({});
+    res.render("coffees/menu", { coffees });
+});
+
+
+
+app.get("/pages", (req, res) => {
+  res.send("This page is not available yet"); // views/menu.ejs
 });
 
 app.get("/orders", (req, res) => {

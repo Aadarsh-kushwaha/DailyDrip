@@ -1,3 +1,4 @@
+console.log("Seeding started...");
 
 const coffees = [
   {
@@ -22,19 +23,20 @@ const coffees = [
     avgRating: 4.5
   },
   {
-    name: "Hazelnut Latte",
-    description: "Creamy latte infused with nutty hazelnut flavor, topped with foam.",
-    price: 220,
-    image: "https://images.unsplash.com/photo-1587986046978-7b07e8c43c3e",
-    avgRating: 4.7
-  },
-  {
-    name: "Caramel Macchiato",
-    description: "Layered espresso drink with milk, vanilla syrup, and caramel drizzle.",
-    price: 240,
-    image: "https://images.unsplash.com/photo-1558874785-1b4e09e2c8ad",
-    avgRating: 4.9
-  },
+  name: "Hazelnut Latte",
+  description: "Creamy latte infused with nutty hazelnut flavor, topped with foam.",
+  price: 220,
+  image: "https://images.unsplash.com/photo-1587986046978-7b07e8c43c3e?auto=format&fit=crop&w=800&q=80",
+  avgRating: 4.7
+},
+{
+  name: "Caramel Macchiato",
+  description: "Layered espresso drink with milk, vanilla syrup, and caramel drizzle.",
+  price: 240,
+  image: "https://images.unsplash.com/photo-1558874785-1b4e09e2c8ad?auto=format&fit=crop&w=800&q=80",
+  avgRating: 4.7
+}
+,
   {
     name: "Mocha Delight",
     description: "A rich blend of espresso, chocolate, and steamed milk topped with whipped cream.",
@@ -57,6 +59,7 @@ const coffees = [
     avgRating: 4.6
   }
 ];
+console.log("Seeding completedd...");
 
 
   module.exports = { data: coffees };

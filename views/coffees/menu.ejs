@@ -1,0 +1,29 @@
+<% layout('layouts/boilerplate') %>
+
+<h1 class="mt-3 font-size: 1.7rem text-warning-emphasis">Explore all the best coffees</h1>
+
+<div class="cards d-flex flex-wrap gap-4 mt-4 ms-4 p-4">
+
+  <% for (let coffee of coffees) { %>
+
+    <div class="card" style="width: 18rem;">
+      <img src="<%= coffee.image %>" class="card-img-top" alt="<%= coffee.name %>">
+
+      <div class="card-body">
+        <h5 class="card-title"><%= coffee.name %></h5>
+
+        <p class="card-text">
+          <%= coffee.description %>
+        </p>
+
+        <p class="fw-bold">₹ <%= coffee.price %> &nbsp;⭐ <%= coffee.avgRating %></p>
+
+     
+      <button type="button" class="btn btn-outline-primary">Order</button>
+
+      </div>
+    </div>
+
+  <% } %>
+
+</div>
