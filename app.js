@@ -8,7 +8,8 @@ const flash = require("express-flash");
 const path = require("path");
 const ejsMate = require("ejs-mate");
 const Coffee = require("./models/coffee");
-
+const { contactValidation } = require("./middleware/validateContact");
+const validateContact = require("./middleware/validateContact");
 
 
 const app = express();
@@ -96,9 +97,18 @@ app.get("/menu", async (req, res) => {
 app.get("/pages", (req, res) => {
   res.send("This page is not available yet"); // views/menu.ejs
 });
+app.get("/contact", (req, res) => {
+    res.render("coffees/contact");
+});
 
-app.get("/orders", (req, res) => {
-  res.render("orders"); // views/orders.ejs
+app.get("/logout", (req, res) => {
+    res.render("coffees/index");
+});
+
+
+
+app.post("/contact", validateContact, (req, res) => {
+    res.send("Message received!");
 });
 
 
@@ -115,6 +125,7 @@ app.get("/orders", (req, res) => {
 
 // ====== Start Server ======
 const PORT = 8080;
-app.listen(PORT, () => {
-  console.log(`🚀 Server running at http://localhost:${PORT}`);
+app.listen(3000, "0.0.0.0", () => {
+  console.log("Server running");
 });
+
