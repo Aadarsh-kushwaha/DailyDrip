@@ -1,45 +1,35 @@
-<div class="navbar">
-    <!-- Logo left -->
-  <div class="logo d-flex align-items-center">
- 
-
-        <!-- <span class="material-symbols-outlined coffee-icon">coffee</span> -->
-  <span class="material-symbols-outlined coffee-icon">coffee</span>
+<div class="custom-navbar">
+  <div class="custom-logo d-flex align-items-center">
+    <span class="material-symbols-outlined coffee-icon">coffee</span>
     <span class="ms-2" style="font-size: 20px; color: white;">Caafinity</span>
-</div>
+  </div>
 
-
-
-    <!-- Links container with flex -->
-    <div class="links-container d-flex flex-grow-1 text-decoration-none">
-        <!-- Left aligned links -->
-        <div class="left-links d-flex text-decoration-none mt-3">
-            <a href="/home">Home</a>
-            <a class="ms-4" href="/menu">Menu</a>
-            <a class="ms-2"href="/about">About</a>
-             <a class="ms-2" href="/pages">Pages</a>
-            <a class="ms-2 d-flex" href="/contact">Contact Us</a>
- 
-        </div>
-        
-
-        <!-- Spacer -->
-        <div class="flex-grow-1"></div>
-
-        <!-- Right aligned links -->
-        <div class="right-links d-flex">
-             <a class="me-2 mt-3 "href="/logout">Logout</a>
-          <a class="ms-auto mt-1 d-block material-symbols-outlined" 
-   style="font-size: 40px;" href="/cart">
-   local_mall
-</a>
-
-        </div>
+  <div class="links-container d-flex flex-grow-1">
+    <div class="left-links d-flex mt-3">
+      <a href="/home">Home</a>
+      <a class="ms-4" href="/menu">Menu</a>
+      <a class="ms-2" href="/about">About</a>
+      <a class="ms-2" href="/pages">Pages</a>
+      <a class="ms-2" href="/contact">Contact Us</a>
     </div>
+
+    <div class="flex-grow-1"></div>
+
+  <div class="auth-section d-flex align-items-center">
+
+  <a href="/login" class="btn btn-link">Login</a>
+
+  <a class="ms-auto mt-1 d-block material-symbols-outlined" 
+     style="font-size: 40px;" href="/cart">
+    local_mall
+  </a>
+
 </div>
 
+  </div>
+</div>
 <style>
-.navbar {
+.custom-navbar {
     display: flex;
     align-items: center;
     background-color: #333;
@@ -47,24 +37,17 @@
     color: white;
 }
 
-.logo {
+.custom-logo {
     display: flex;
     align-items: center;
 }
 
 .coffee-icon {
-    font-variation-settings:
-        'FILL' 1,
-        'wght' 400,
-        'GRAD' 0,
-        'opsz' 48;
+    font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 48;
     font-size: 36px;
     color: #f5deb3;
 }
-.left-links a,
-.right-links a {
-    text-decoration: none !important;
-}
+
 .links-container a {
     color: white;
     text-decoration: none;
@@ -75,4 +58,6 @@
 .links-container a:hover {
     text-decoration: underline;
 }
+
+
 </style>

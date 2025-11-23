@@ -1,21 +1,59 @@
 <% layout('layouts/boilerplate') %>
+<div class="signup-wrapper">
+    <div class="signup-card">
+
+        <h2>Register Yourself at Caffinity </h2>
+
+        <form action="/signup" method="POST">
+
+            <input type="text" name="name" placeholder="Full Name" required>
+
+            <input type="number" name="age" placeholder="Age" min="1" required>
+
+            <input type="email" name="email" placeholder="Email Address" required>
+
+            <input type="text" name="mobile" placeholder="Mobile Number" minlength="10" maxlength="10" required>
+
+            <input type="password" name="password" placeholder="Password" required>
+
+            <input type="password" name="confirmPassword" placeholder="Confirm Password" required>
+
+            <button class="signup-btn">Signup</button>
+        </form>
+
+        <!-- Google Signup -->
+        <a href="/auth/google">
+            <button class="google-btn">
+                <img src="/img/google.png" />  
+                Sign up with Google
+            </button>
+        </a>
+
+        <p class="login-text">
+            Already have an account?
+            <a href="/login">Login Now</a>
+        </p>
+
+    </div>
+</div>
+
 <style>
     body {
         background: #f3ebe3; /* Dark coffee background */
         font-family: 'Poppins', sans-serif;
     }
 
-    .login-wrapper {
-        min-height: 80vh;
+    .signup-wrapper {
+        min-height: 85vh;
         display: flex;
         align-items: center;
         justify-content: center;
         padding: 20px;
     }
 
-    .login-card {
+    .signup-card {
         background: #2b2b2b;
-        width: 420px;
+        width: 450px;
         padding: 35px;
         border-radius: 18px;
         box-shadow: 0 0 10px rgba(255, 212, 143, 0.25);
@@ -23,14 +61,14 @@
         color: white;
     }
 
-    .login-card h2 {
+    .signup-card h2 {
         text-align: center;
-        color: #f7d08a; /* Coffee golden */
+        color: #f7d08a;
         margin-bottom: 25px;
         font-size: 28px;
     }
 
-    .login-card input {
+    .signup-card input {
         background: #1e1e1e;
         border: 1px solid #444;
         color: white;
@@ -40,9 +78,9 @@
         margin-bottom: 16px;
     }
 
-    .login-btn {
+    .signup-btn {
         width: 100%;
-        background: #c49b66; /* Coffee brown */
+        background: #c49b66;
         border: none;
         padding: 12px;
         border-radius: 10px;
@@ -52,7 +90,7 @@
         transition: 0.3s;
     }
 
-    .login-btn:hover {
+    .signup-btn:hover {
         background: #e6b578;
     }
 
@@ -81,42 +119,15 @@
         width: 22px;
     }
 
-    .signup-text {
+    .login-text {
         text-align: center;
         margin-top: 15px;
         color: #c9c9c9;
     }
 
-    .signup-text a {
+    .login-text a {
         color: #f7d08a;
         font-weight: 600;
         text-decoration: none;
     }
 </style>
-
-<div class="login-wrapper">
-    <div class="login-card">
-
-        <h2>Login to Caffinity</h2>
-
-        <form action="/login" method="POST">
-            <input type="email" name="email" placeholder="Enter Email" required>
-            <input type="password" name="password" placeholder="Enter Password" required>
-
-            <button class="login-btn">Login</button>
-        </form>
-
-        <!-- Google Login -->
-        <a href="/auth/google">
-            <button class="google-btn">
-                <img src="/img/google.png" width="22"/>
-                Continue with Google
-            </button>
-        </a>
-
-        <p class="signup-text">
-            Don’t have an account? 
-            <a href="/signup">Signup Now</a>
-        </p>
-    </div>
-</div>

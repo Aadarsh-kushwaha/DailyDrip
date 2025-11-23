@@ -101,10 +101,15 @@ app.get("/contact", (req, res) => {
     res.render("coffees/contact");
 });
 
-app.get("/logout", (req, res) => {
-    res.render("coffees/index");
+
+app.get("/login", (req, res) => {
+   res.render("users/login");
 });
 
+
+app.get("/signup", (req, res) => {
+   res.render("users/signup");
+});
 
 
 app.post("/contact", validateContact, (req, res) => {
