@@ -1,3 +1,6 @@
+require('dotenv').config();
+
+
 // server.js
 const express = require("express");
 const mongoose = require("mongoose");
@@ -10,6 +13,10 @@ const ejsMate = require("ejs-mate");
 const Coffee = require("./models/coffee");
 const { contactValidation } = require("./middleware/validateContact");
 const validateContact = require("./middleware/validateContact");
+const passport = require('passport');
+const session = require('express-session');
+const GoogleStrategy = require('passport-google-oauth20').Strategy;
+
 
 
 const app = express();
@@ -69,6 +76,10 @@ app.use(
 
 
 app.use(flash());
+
+
+app.use(passport.initialize());
+app.use(passport.session());
 
 // ====== Locals Middleware ======
 app.use((req, res, next) => {
