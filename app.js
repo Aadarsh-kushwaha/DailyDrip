@@ -67,6 +67,7 @@ app.use(
   })
 );
 
+
 app.use(flash());
 
 // ====== Locals Middleware ======
