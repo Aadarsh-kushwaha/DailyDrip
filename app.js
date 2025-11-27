@@ -1,4 +1,3 @@
-require('dotenv').config();
 
 
 // server.js
@@ -14,8 +13,13 @@ const Coffee = require("./models/coffee");
 const { contactValidation } = require("./middleware/validateContact");
 const validateContact = require("./middleware/validateContact");
 const passport = require('passport');
-const session = require('express-session');
-const GoogleStrategy = require('passport-google-oauth20').Strategy;
+require('./auth');
+const GoogleStrategy = require("passport-google-oauth20").Strategy;
+
+function isLoggedIn(req,res,next){
+  req.user ? next() : res.sendStatus(401);
+}
+
 
 
 
@@ -60,28 +64,59 @@ const store = MongoStore.create({
   touchAfter: 24 * 60 * 60, // reduce session updates
 });
 
-app.use(
-  session({
-    store,
-    secret: "thisisnotagoodsecret", // static for local dev
+// app.use(
+//   session({
+//     store,
+//     secret: "thisisnotagoodsecret", // static for local dev
+//     resave: false,
+//     saveUninitialized: true,
+//      cookie: {
+//       httpOnly: true,
+//       expires: Date.now() + 1000 * 60 * 60 * 24 * 3, // 3 days
+//       maxAge: 1000 * 60 * 60 * 24 * 3,
+//     },
+   
+//   })
+// );
+
+
+app.use(session({
+    secret: "cats",
     resave: false,
-    saveUninitialized: true,
-    cookie: {
+    saveUninitialized: false,
+     cookie: {
       httpOnly: true,
       expires: Date.now() + 1000 * 60 * 60 * 24 * 3, // 3 days
       maxAge: 1000 * 60 * 60 * 24 * 3,
     },
-  })
-);
-
-
+}));
 app.use(flash());
 
 
 app.use(passport.initialize());
 app.use(passport.session());
 
+
+
 // ====== Locals Middleware ======
+
+app.get('/auth/google',
+  passport.authenticate('google',{scope: ['email','profile']})
+);
+app.get('/google/callback',
+  passport.authenticate('google',{
+    successRedirect : '/protected',
+    failureRedirect: '/auth/failure',
+
+  })
+);
+
+app.get('/auth/failure',(req,res)=>{
+  res.send("SOMETHING WENT WRONG...");
+})
+
+
+
 app.use((req, res, next) => {
   res.locals.currentUser = req.session.user || null;
   res.locals.success = req.flash("success");
@@ -90,6 +125,9 @@ app.use((req, res, next) => {
 });
 
 // ====== Routes ======
+app.get('/protected',isLoggedIn,(req,res)=>{
+  res.send("hello");
+})
 app.get("/home", (req, res) => {
     res.render("coffees/index");
 });
