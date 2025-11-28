@@ -16,10 +16,11 @@ const passport = require('passport');
 require('./auth');
 const GoogleStrategy = require("passport-google-oauth20").Strategy;
 
-function isLoggedIn(req,res,next){
-  req.user ? next() : res.sendStatus(401);
-}
 
+function isLoggedIn(req, res, next) {
+  if (req.isAuthenticated()) return next();
+  res.redirect('/login'); // ya signup page
+}
 
 
 
@@ -113,7 +114,52 @@ app.get('/google/callback',
 
 app.get('/auth/failure',(req,res)=>{
   res.send("SOMETHING WENT WRONG...");
-})
+});
+
+app.post("/signup", async (req, res) => {
+    try {
+        const { name, age, email, mobile, password, confirmPassword } = req.body;
+
+        if (password !== confirmPassword) {
+            return res.send("Passwords do not match");
+        }
+
+        const userExist = await User.findOne({ email });
+        if (userExist) {
+            return res.send("Email already registered");
+        }
+
+        const newUser = new User({
+            name,
+            age,
+            email,
+            mobile,
+            password,
+        });
+
+        await newUser.save();
+        res.send("Signup successful, please login");
+    } catch (err) {
+        res.send("Error: " + err.message);
+    }
+});
+
+
+
+app.get('/logout', (req, res, next) => {
+  req.logout(err => {
+    if (err) return next(err);
+
+    req.session.destroy(err => {
+      if (err) return next(err);
+
+      res.clearCookie('connect.sid', { path: '/' }); // ensure path matches session cookie
+      res.redirect('/home');  // **sirf yahi response bhejo**
+    });
+  });
+});
+
+
 
 
 
