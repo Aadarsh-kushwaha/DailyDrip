@@ -159,6 +159,9 @@ app.get('/logout', (req, res, next) => {
   });
 });
 
+app.get('/check-session', (req, res) => {
+  res.send(req.session);
+});
 
 
 
@@ -171,9 +174,19 @@ app.use((req, res, next) => {
 });
 
 // ====== Routes ======
+
 app.get('/protected',isLoggedIn,(req,res)=>{
   res.send("hello");
-})
+});
+
+app.get('/check', (req, res) => {
+  if (req.user) {
+    res.send("User is logged in: " + req.user.email);
+  } else {
+    res.send("User is NOT logged in");
+  }
+});
+
 app.get("/home", (req, res) => {
     res.render("coffees/index");
 });
