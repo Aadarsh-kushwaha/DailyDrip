@@ -1,5 +1,3 @@
-
-
 // server.js
 const express = require("express");
 const mongoose = require("mongoose");
@@ -46,6 +44,7 @@ main()
 
 
 
+
 app.engine("ejs", ejsMate);
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
@@ -53,32 +52,21 @@ app.set("views", path.join(__dirname, "views"));
 // ====== Middlewares ======
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
+
 // 1️⃣ Public folder for CSS, JS, etc.
 app.use(express.static(path.join(__dirname, "public")));
 app.use(express.static("public"));
 
+
 // 2️⃣ Init folder for images or other assets
 app.use(express.static(path.join(__dirname, "Init")));
+
+
 // ====== Session Config ======
 const store = MongoStore.create({
   mongoUrl: dburl,
   touchAfter: 24 * 60 * 60, // reduce session updates
 });
-
-// app.use(
-//   session({
-//     store,
-//     secret: "thisisnotagoodsecret", // static for local dev
-//     resave: false,
-//     saveUninitialized: true,
-//      cookie: {
-//       httpOnly: true,
-//       expires: Date.now() + 1000 * 60 * 60 * 24 * 3, // 3 days
-//       maxAge: 1000 * 60 * 60 * 24 * 3,
-//     },
-   
-//   })
-// );
 
 
 app.use(session({
@@ -159,11 +147,6 @@ app.get('/logout', (req, res, next) => {
   });
 });
 
-app.get('/check-session', (req, res) => {
-  res.send(req.session);
-});
-
-
 
 
 app.use((req, res, next) => {
@@ -236,6 +219,10 @@ app.post("/contact", validateContact, (req, res) => {
 //   const { statusCode = 500, message = "Something went wrong!" } = err;
 //   res.status(statusCode).render("error", { err });
 // });
+
+
+
+
 
 // ====== Start Server ======
 const PORT = 8080;
