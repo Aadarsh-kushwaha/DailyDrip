@@ -13,6 +13,7 @@ const validateContact = require("./middleware/validateContact");
 const passport = require('passport');
 require('./auth');
 const GoogleStrategy = require("passport-google-oauth20").Strategy;
+const app = express();
 
 
 function isLoggedIn(req, res, next) {
@@ -22,7 +23,6 @@ function isLoggedIn(req, res, next) {
 
 
 
-const app = express();
 
 // ====== MongoDB Connection ======
 const dburl = "mongodb://127.0.0.1:27017/coffee-shop";
