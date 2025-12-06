@@ -22,8 +22,6 @@ function isLoggedIn(req, res, next) {
 }
 
 
-
-
 // ====== MongoDB Connection ======
 const dburl = "mongodb://127.0.0.1:27017/coffee-shop";
 
