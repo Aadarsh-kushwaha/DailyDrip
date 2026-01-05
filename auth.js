@@ -4,9 +4,6 @@ const User = require("./models/user"); // path ko check karo, agar User.js model
 const passport = require('passport');
 const GoogleStrategy = require("passport-google-oauth20").Strategy;
 
-
-
-
 passport.use(
     new GoogleStrategy(
         {
