@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const Coffee = require('../models/coffee'); // correct relative path
+const Drink = require('../models/drink'); // correct relative path
 const initData = require("./init.js");
 
 // ====== MongoDB Connection ======
@@ -21,8 +21,8 @@ main()
 const initDB = async () =>{
    // await Listing.deleteMany({});
  //  initData.data =  initData.data.map((obj)=>({...obj,owner:"68b2021bb2aa118316733e68"}));
- 
-    await Coffee.insertMany(initData.data);
+  await Drink.deleteMany({});
+    await Drink.insertMany(initData.data);
     console.log("Data was initialized");  
 };
 initDB();

@@ -8,6 +8,7 @@ const flash = require("express-flash");
 const path = require("path");
 const ejsMate = require("ejs-mate");
 const Coffee = require("./models/coffee");
+const Drink = require("./models/drink");
 const { contactValidation } = require("./middleware/validateContact");
 const validateContact = require("./middleware/validateContact");
 const passport = require('passport');
@@ -178,8 +179,17 @@ app.get("/about", (req, res) => {
 
 
 app.get("/menu", async (req, res) => {
-    let coffees = await Coffee.find({});
-    res.render("coffees/menu", { coffees });
+    // let coffees = await Coffee.find({});
+    // let drinks = await Drink.find({});
+    
+      const [coffees, drinks] = await Promise.all([
+        Coffee.find({}),
+        Drink.find({})
+    ]);
+
+    res.render("coffees/menu", { coffees , drinks });
+
+
 });
 
 
