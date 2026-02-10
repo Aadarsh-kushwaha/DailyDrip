@@ -194,6 +194,7 @@ app.get("/menu", async (req, res) => {
 
 
 
+
 app.get("/pages", (req, res) => {
   res.send("This page is not available yet"); // views/menu.ejs
 });
