@@ -228,6 +228,13 @@ app.post("/contact", validateContact, (req, res) => {
 //   const { statusCode = 500, message = "Something went wrong!" } = err;
 //   res.status(statusCode).render("error", { err });
 // });
+app.get("/err",(req ,res,) =>{
+  abcd=abcd;
+});
+app.use((err, req, res, next) => {
+ console.log("---ERROR----");
+ next();
+});
 
 
 

@@ -123,23 +123,23 @@
 
     <!-- Right Form -->
     <div class="right-section">
-      <form class="needs-validation" novalidate  method="POST">
+      <form action="/contact" class="needs-validation"   method="POST">
 
         <label>Your Name</label>
-        <input type="text" id="name" placeholder="Enter your full name" required />
+        <input type="text" id="name" name="name" placeholder="Enter your full name" required />
          <div class="error-text" id="nameError"></div>
 
         <label>Email Address</label>
-        <input type="email" id="email" placeholder="Enter your email" required />
+        <input type="email" id="email" name="email" placeholder="Enter your email" required />
          <div class="error-text" id="emailError"></div>
 
         <label>Mobile Number</label>
-        <input type="text" id="mobile" placeholder="Enter your phone number" required/>
+        <input type="tel" id="mobile" name="mobile" pattern="[0-9]{10}" placeholder="Enter your phone number" required />
          <div class="error-text" id="mobileError"></div>
 
-        <label>Issue Type</label>
+        <label name="issue">Issue Type</label>
         <select required>
-          <option>Select your issue</option>
+           <option value="" disabled selected>Select your issue</option>
           <option>Order Issue</option>
           <option>Payment Issue</option>
           <option>Account Issue</option>
@@ -147,8 +147,9 @@
           <option>Other</option>
         </select>
 
-        <label>How did you know about us?</label>
+        <label for="source">How did you know about us?</label>
         <select required>
+          <option value="" disabled selected>Select your issue</option>
           <option>Select</option>
           <option>Instagram</option>
           <option>Friends</option>
@@ -157,8 +158,8 @@
           <option>Other</option>
         </select>
 
-        <label>Your Message</label>
-        <textarea rows="6" id="msg" placeholder="Write your message..." required></textarea>
+        <label name="msg">Your Message</label>
+        <textarea rows="6" id="msg" name="name" placeholder="Write your message..." required></textarea>
          <div class="error-text" id="msgError"></div>
 
         <button type="submit">Send Message</button>
@@ -166,6 +167,7 @@
     </div>
 
   </div>
+<!--   
 <script>
 document.getElementById("contactForm").addEventListener("submit", function (e) {
 
@@ -211,4 +213,4 @@ document.getElementById("contactForm").addEventListener("submit", function (e) {
 
     if (!valid) e.preventDefault();  // block form submit
 });
-</script>
+</script> -->
