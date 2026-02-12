@@ -39,7 +39,7 @@ const coffees = [
 ,
   {
     name: "Mocha Delight",
-    description: "A rich blend of espresso, chocolate, and steamed milk topped with whipped cream.",
+    description: "A rich blend of espresso, and steamed milk topped with whipped cream.",
     price: 230,
     image: "https://images.unsplash.com/photo-1498804103079-a6351b050096",
     avgRating: 4.8

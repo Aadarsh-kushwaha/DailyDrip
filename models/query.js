@@ -1,32 +1,35 @@
-const { number, string } = require("joi");
 const mongoose = require("mongoose");
 
 const querySchema = new mongoose.Schema({
-    name: {
-        type:string,
-        require :true,
-    },
-    email:{
-        type:string,
-        require :true,
-    },
-    numer:{
-          type:number,
-        require :true,
-    },
-    issue:{
-          type:string,
-        require :true,
-    },
-    reachedBY:{
-          type:string,
-        require :true,
-    },
-    msg:{
-          type:string,
-        require :true,
-    }
+  name: {
+    type: String,
+    required: true,
+  },
+
+  email: {
+    type: String,
+    required: true,
+  },
+
+  mobile: {
+    type: String,
+    required: true,
+  },
+
+  issue: {
+    type: String,
+    required: true,
+  },
+
+  source: {
+    type: String,
+    required: true,
+  },
+
+  message: {
+    type: String,
+    required: true,
+  }
 });
 
-
-module.exports = mongoose.model('Query', querySchema);
+module.exports = mongoose.model("Query", querySchema);

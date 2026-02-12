@@ -15,6 +15,8 @@ const passport = require('passport');
 require('./auth');
 const GoogleStrategy = require("passport-google-oauth20").Strategy;
 const app = express();
+const Query = require("./models/query");
+
 
 
 function isLoggedIn(req, res, next) {
@@ -173,6 +175,10 @@ app.get("/home", (req, res) => {
     res.render("coffees/index");
 });
 
+app.get("/about", (req, res) => {
+    res.render("coffees/about");
+});
+
 
 
 app.get("/menu", async (req, res) => {
@@ -216,9 +222,25 @@ app.get("/contact", (req, res) => {
 });
 
 // POST route
-app.post("/contact", validateContact, (req, res) => {
+app.post("/contact", validateContact, async(req, res) => {
+ try{
+  const {name,email,mobile,issue , source , message } = req.body;
+  const newQuery = new Query({
+    name,
+    email,
+    mobile,
+    issue,
+    source,
+    message,
+  });
+ 
+ await newQuery.save();
+
   console.log(req.body);
-  res.send("Message received!");
+  res.send("Thank you for the feedback will reach you out soon...!!");
+ }catch(err){
+  res.send("Error:" + err.message);
+ }
 });
 
 // app.get("/response",(req,res)=>{
