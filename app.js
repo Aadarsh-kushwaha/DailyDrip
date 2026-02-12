@@ -173,9 +173,6 @@ app.get("/home", (req, res) => {
     res.render("coffees/index");
 });
 
-app.get("/about", (req, res) => {
-    res.render("coffees/about");
-});
 
 
 app.get("/menu", async (req, res) => {
@@ -198,7 +195,7 @@ app.get("/menu", async (req, res) => {
 app.get("/pages", (req, res) => {
   res.send("This page is not available yet"); // views/menu.ejs
 });
-app.get("/contact", (req, res) => {
+app.get("/connect", (req, res) => {
     res.render("coffees/contact");
 });
 
@@ -213,9 +210,21 @@ app.get("/signup", (req, res) => {
 });
 
 
-app.post("/contact", validateContact, (req, res) => {
-    res.send("Message received!");
+// GET route
+app.get("/contact", (req, res) => {
+  res.render("coffees/contact");
 });
+
+// POST route
+app.post("/contact", validateContact, (req, res) => {
+  console.log(req.body);
+  res.send("Message received!");
+});
+
+// app.get("/response",(req,res)=>{
+//   console.log(req.body);
+// });
+
 
 
 // ====== Error Handling ======
@@ -232,7 +241,7 @@ app.get("/err",(req ,res,) =>{
   abcd=abcd;
 });
 app.use((err, req, res, next) => {
- console.log("---ERROR----");
+ console.log(err);
  next();
 });
 
