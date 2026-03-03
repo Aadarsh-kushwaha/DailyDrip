@@ -243,6 +243,11 @@ app.post("/contact", validateContact, async(req, res) => {
  }
 });
 
+app.get("/coffees/:id", async (req, res) => {
+    const coffee = await Coffee.findById(req.params.id);
+    res.send(coffee.name);
+});
+
 // app.get("/response",(req,res)=>{
 //   console.log(req.body);
 // });
