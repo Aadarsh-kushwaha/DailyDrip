@@ -245,7 +245,9 @@ app.post("/contact", validateContact, async(req, res) => {
 
 app.get("/coffees/:id", async (req, res) => {
     const coffee = await Coffee.findById(req.params.id);
-    res.send(coffee.name);
+   // res.send(coffee.name);
+   //res.send(`Your clicked button named as ${coffee.name} and cost is : ${coffee.price} `);
+  res.render("coffees/show",{coffee});
 });
 
 // app.get("/response",(req,res)=>{
