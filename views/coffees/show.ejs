@@ -1,11 +1,79 @@
 <% layout('layouts/boilerplate') %>
-
+<!-- 
 <div class="coffee-container">
 
     <% if (coffee.image) { %>
-        <div class="coffee-image">
+         <div class="coffee-image ">
             <img src="<%= coffee.image %>" alt="<%= coffee.name %>">
+        </div> -->
+        <!-- <div class="card mb-3" style="max-width: 540px;">
+  <div class="row no-gutters">
+    <div class="col-md-4">
+      <img src="<%= coffee.image %>" class="card-img" alt="<%= coffee.name %>">
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title"> <%= coffee.name %></h5>
+        <p class="card-text"> <%= coffee.description %> </p>
+        <p class="card-text"><small class="text-muted"><coffee class="price"></coffee></small></p>
+      </div>
+    </div>
+  </div>
+</div> -->
+
+    <!-- <% } %> -->
+
+<!-- </div>  -->
+
+
+
+
+
+
+<div class="coffee-container d-flex justify-content-center align-items-center" style="min-height: 100vh; background: linear-gradient(to right, #f3e5d8, #e6d3c3);">
+
+  <div class="card shadow-lg border-4" style="max-width: 650px; border-radius: 15px; background-color: #fffaf5;">
+
+    <div class="row g-0">
+
+      <!-- Image -->
+      <div class="col-md-4 border  rounded-left">
+        <img src="<%= coffee.image %>" 
+             class="img-fluid h-100 w-100" 
+             style="object-fit: cover; border-top-left-radius: 15px; border-bottom-left-radius: 15px;" 
+             alt="<%= coffee.name %>">
+      </div>
+
+      <!-- Content -->
+      <div class="col-md-8">
+        <div class="card-body d-flex flex-column justify-content-center">
+
+          <h4 class="card-title fw-bold" style="color: #4b2e2e;">
+            <%= coffee.name %>
+          </h4>
+
+          <p class="card-text" style="color: #6b4f4f;">
+            <%= coffee.description %>
+          </p>
+
+          <p class="fw-semibold" style="color: #8b4513;">
+            ₹ <%= coffee.price %>
+          </p>
+
+          <p class="mb-2">
+            ⭐ <%= coffee.avgRating %> / 5
+          </p>
+
+          <a href="/menu" class="btn mt-2" 
+             style="background-color: #6f4e37; color: white; border-radius: 8px;">
+            Back
+          </a>
+
         </div>
-    <% } %>
+      </div>
+
+    </div>
+
+  </div>
 
 </div>
