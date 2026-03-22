@@ -7,7 +7,7 @@ const MongoStore = require("connect-mongo");
 const flash = require("express-flash");
 const path = require("path");
 const ejsMate = require("ejs-mate");
-const Coffee = require("./models/coffee");
+const Product = require("./models/product");
 const Drink = require("./models/drink");
 const { contactValidation } = require("./middleware/validateContact");
 const validateContact = require("./middleware/validateContact");
@@ -181,21 +181,14 @@ app.get("/about", (req, res) => {
 
 
 
+
+
 app.get("/menu", async (req, res) => {
-    // let coffees = await Coffee.find({});
-    // let drinks = await Drink.find({});
-    
-      const [coffees, drinks] = await Promise.all([
-        Coffee.find({}),
-        Drink.find({})
-    ]);
+    const coffees = await Product.find({ category: "coffee" });
+    const drinks = await Product.find({ category: "drink" });
 
-    res.render("coffees/menu", { coffees , drinks });
-
-
+    res.render("coffees/menu", { coffees, drinks });
 });
-
-
 
 
 app.get("/pages", (req, res) => {
@@ -243,11 +236,11 @@ app.post("/contact", validateContact, async(req, res) => {
  }
 });
 
-app.get("/coffees/:id", async (req, res) => {
-    const coffee = await Coffee.findById(req.params.id);
+app.get("/product/:id", async (req, res) => {
+    const product = await Product.findById(req.params.id);
    // res.send(coffee.name);
    //res.send(`Your clicked button named as ${coffee.name} and cost is : ${coffee.price} `);
-  res.render("coffees/show",{coffee});
+  res.render("coffees/show",{product});
 });
 
 // app.get("/response",(req,res)=>{
