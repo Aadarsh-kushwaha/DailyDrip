@@ -35,7 +35,8 @@
         ₹ <%= coffee.price %> &nbsp; ⭐ <%= coffee.avgRating %>
       </p>
 
-   <form action="/add" method="POST">
+   <form action="/pushCart" method="POST">    
+      <input type="hidden" name="productId" value="<%= coffee._id %>">
     <button class="btn btn-lg w-100 btn-warning text-dark btn-sm mt-2 rounded-4" >
         🛒 Add
     </button>

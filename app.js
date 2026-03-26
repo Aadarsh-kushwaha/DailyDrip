@@ -8,6 +8,7 @@ const flash = require("express-flash");
 const path = require("path");
 const ejsMate = require("ejs-mate");
 const Product = require("./models/product");
+const Cart = require("./models/cart");
 const Drink = require("./models/drink");
 const { contactValidation } = require("./middleware/validateContact");
 const validateContact = require("./middleware/validateContact");
@@ -242,6 +243,41 @@ app.get("/product/:id", async (req, res) => {
    //res.send(`Your clicked button named as ${coffee.name} and cost is : ${coffee.price} `);
   res.render("coffees/show",{product});
 });
+app.post("/pushCart", isLoggedIn, async (req, res) => {
+  try {
+    const userId = req.user._id;
+    const { productId } = req.body;
+
+
+    console.log("Before findOne");
+    let cart = await Cart.findOne({ userId });
+
+    if (!cart) {
+      cart = new Cart({ userId, items: [] });
+    }
+
+    let item = cart.items.find(i =>
+      i.productId.toString() === productId.toString()
+    );
+
+    if (item) {
+      item.quantity += 1;
+    } else {
+      cart.items.push({ productId, quantity: 1 });
+      
+    }
+
+    await cart.save();
+    console.log("3 - Saved");
+
+    res.send("Added to the cart");
+
+  } catch (err) {
+    console.log("ERROR 🔥:", err);
+    res.send("Error ❌");
+  }
+});
+
 
 // app.get("/response",(req,res)=>{
 //   console.log(req.body);
