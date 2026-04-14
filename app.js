@@ -21,8 +21,10 @@ const Query = require("./models/query");
 
 
 function isLoggedIn(req, res, next) {
-  if (req.isAuthenticated()) return next();
-  res.redirect('/login'); // ya signup page
+  if (!req.isAuthenticated()) {
+    return res.status(401).json({ message: "Login required" });
+  }
+  next();
 }
 
 
@@ -243,10 +245,12 @@ app.get("/product/:id", async (req, res) => {
    //res.send(`Your clicked button named as ${coffee.name} and cost is : ${coffee.price} `);
   res.render("coffees/show",{product});
 });
+
 app.post("/pushCart", isLoggedIn, async (req, res) => {
   try {
     const userId = req.user._id;
     const { productId } = req.body;
+console.log("BODY:", req.body);
 
 
     console.log("Before findOne");
@@ -268,7 +272,6 @@ app.post("/pushCart", isLoggedIn, async (req, res) => {
     }
 
     await cart.save();
-    console.log("3 - Saved");
 
     res.send("Added to the cart");
 
