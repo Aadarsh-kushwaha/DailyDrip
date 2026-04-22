@@ -1,0 +1,199 @@
+<% layout('layouts/boilerplate') %>
+
+<style>
+/* Product Image */
+.product-img {
+  display: block;   /* 🔥 important */
+  width: 800%;
+  height: 120px;
+  object-fit: cover;
+  width: 90%;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+/* Card */
+.cart-card {
+  border-radius: 12px;
+  transition: 0.3s ease;
+}
+
+.cart-card:hover {
+  transform: translateY(-3px);
+}
+
+/* Quantity */
+.qty-box button {
+  border-radius: 6px;
+}
+
+/* Summary box (RIGHT SIDE) */
+.summary-box {
+  background: #1f1f1f;
+  color: white;
+  border-radius: 16px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+
+   position: fixed;
+  right: 80px;     /* adjust according to layout */
+  bottom: 100px;    /* 🔥 niche chipka rahega */
+  width: 420px;
+}
+
+/* Checkout button */
+.checkout-btn {
+  background: #f5b041;
+  border: none;
+  color: black;
+  font-weight: 600;
+  padding: 12px;
+  border-radius: 10px;
+  transition: 0.3s;
+}
+
+.checkout-btn:hover {
+  background: #e0a02f;
+}
+
+/* Back button */
+.back-btn {
+  display: inline-block;
+  text-decoration: none;
+  color: #555;
+  font-size: 16px;
+  font-weight: 500;
+  background: transparent;
+  border: none;
+  padding: 8px 12px;
+  transition: 0.3s ease;
+}
+
+.back-btn:hover {
+  color: black;
+  background: rgba(0,0,0,0.05);
+  border-radius: 6px;
+}
+
+/* Delete icon */
+.delete-icon {
+  cursor: pointer;
+  color: #888;
+  transition: 0.3s;
+}
+
+.delete-icon:hover {
+  color: red;
+}
+</style>
+
+
+<div class="container my-5">
+
+  <div class="row">
+
+    <!-- LEFT SIDE -->
+    <div class="col-lg-7">
+
+      <a href="/menu" class="back-btn">← Back to Menu</a>
+
+      <h3 class="fw-bold mb-4 ">YOUR CART (<%= cart.length %>)</h3>
+
+      <% cart.forEach(item => { 
+        const { name, price, quantity, image } = item;
+      %>
+
+      <div class="card mb-4 p-0 shadow-sm border-dark cart-card">
+        <div class="row g-0 align-items-center p-0">
+
+          <!-- IMAGE -->
+          <div class="col-md-3 text-center p-0">
+            <img src="<%= image %>" class="product-img">
+          </div>
+
+          <!-- CONTENT -->
+          <div class="col-md-9">
+            <div class="card-body p-0 d-flex justify-content-between align-items-start">
+
+              <!-- LEFT TEXT -->
+              <div>
+                <h5 class="fw-bold mb-1"><%= name %></h5>
+                <p class="text-muted mb-2">₹<%= price %></p>
+
+              <div class="qty-box d-flex align-items-center">
+
+  <!-- DECREASE -->
+  <form action="/cart/decrease/<%= item.productId %>?_method=PUT" method="POST">
+    <button class="btn btn-light btn-sm">-</button>
+  </form>
+
+  <span class="mx-2"><%= quantity %></span>
+
+  <!-- INCREASE -->
+  <form action="/cart/increase/<%= item.productId %>?_method=PUT" method="POST">
+    <button class="btn btn-light btn-sm">+</button>
+  </form>
+
+</div>
+              </div>
+
+              <!-- RIGHT SIDE -->
+              <div class="d-flex flex-column align-items-end">
+               
+
+              <form action="/cart/<%= item.productId %>?_method=DELETE" method="POST">
+  <button type="submit" style="border:none; background:none;">
+    <span class="material-symbols-outlined delete-icon">
+      delete
+    </span>
+  </button>
+</form>
+
+                <!-- TOTAL -->
+                <h5 class="fw-bold mt-3">
+                  ₹<%= price * quantity %>
+                </h5>
+
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <% }) %>
+
+    </div>
+
+
+    <!-- RIGHT SIDE -->
+    <div class="col-lg-4 offset-lg-1">
+
+      <div class="summary-box p-4">
+
+        <h5 class="fw-bold text-uppercase mb-4">
+          ORDER <span class="text-warning">DETAILS</span>
+        </h5>
+
+        <% 
+          let total = 0;
+          cart.forEach(item => {
+            total += item.price * item.quantity;
+          });
+        %>
+
+        <p class="text-muted mb-1">Total Payable</p>
+        <h2 class="fw-bold mb-4 text-warning">₹<%= total %></h2>
+
+        <button class="btn checkout-btn w-100">
+          Secure Checkout →
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

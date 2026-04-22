@@ -35,11 +35,15 @@ passport.use(
         }
     )
 );
-
-passport.serializeUser(function(user,done){
-    done(null,user);
+passport.serializeUser((user, done) => {
+  done(null, user._id);   // ✅ sirf id store hogi
 });
 
-passport.deserializeUser(function(user,done){
-    done(null,user);
+passport.deserializeUser(async (id, done) => {
+  try {
+    const user = await User.findById(id);
+    done(null, user);     // ✅ har request pe fresh user
+  } catch (err) {
+    done(err, null);
+  }
 });
