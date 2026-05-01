@@ -126,6 +126,7 @@ app.get('/google/callback',
   }
 );
 
+
 app.get('/auth/failure',(req,res)=>{
   res.send("SOMETHING WENT WRONG...");
 });
