@@ -254,9 +254,11 @@ app.post("/contact", validateContact, async(req, res) => {
   });
  
  await newQuery.save();
+ 
+req.flash("success", "Your response is recorded");
 
-  console.log(req.body);
-  res.send("Thank you for the feedback will reach you out soon...!!");
+return res.redirect("/contact");
+
  }catch(err){
   res.send("Error:" + err.message);
  }
@@ -276,7 +278,6 @@ app.post("/pushCart", isLoggedIn, async (req, res) => {
   
 
 
-    console.log("Before findOne");
     let cart = await Cart.findOne({ userId });
 
     if (!cart) {
@@ -295,8 +296,9 @@ app.post("/pushCart", isLoggedIn, async (req, res) => {
     }
 
     await cart.save();
+    req.flash("success", "Product Added To Cart");
 
-    res.send("Added to the cart");
+   res.redirect("/menu");
 
   } catch (err) {
     console.log("ERROR 🔥:", err);
@@ -351,7 +353,7 @@ app.delete("/cart/:productId", isLoggedIn, async (req, res) => {
       }
     }
   );
-
+  req.flash("success", "Product deleted from the cart");
   res.redirect("/cart");
 });
 app.put("/cart/increase/:productId", isLoggedIn, async (req, res) => {

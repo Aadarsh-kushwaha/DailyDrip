@@ -1,12 +1,50 @@
+<!-- 
+  -->
+<style>
+  .flash-message{
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 15px 25px;
+    border-radius: 10px;
+    color: white;
+    font-weight: bold;
+    border: black;
+    z-index: 9999;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
 
+    animation: fadeOut 3s forwards;
+}
+
+.success-flash{
+    background-color: #28a745;
+}
+
+.error-flash{
+    background-color: #dc3545;
+}
+
+@keyframes fadeOut{
+    0%{
+        opacity: 1;
+    }
+    80%{
+        opacity: 1;
+    }
+    100%{
+        opacity: 0;
+        visibility: hidden;
+    }
+}
+</style>
 <% if(success && success.length > 0) { %>
-  <div class="alert alert-success">
+<div class="flash-message success-flash">
     <%= success[0] %>
-  </div>
+</div>
 <% } %>
 
 <% if(error && error.length > 0) { %>
-  <div class="alert alert-danger">
+<div class="flash-message error-flash">
     <%= error[0] %>
-  </div>
+</div>
 <% } %>
